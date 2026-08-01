@@ -93,7 +93,7 @@
             bindings = <
 &mt LEFT_CONTROL Q  &mt LEFT_WIN W  &td_e  &kp R  &kp T      &kp Y             &kp U   &kp I   &kp O     &mt LEFT_SHIFT P
 &kp A               &kp S           &kp D   &kp F  &kp G      &kp H             &td_j   &td_k   &kp L     &lt 5 MINUS
-&kp Z               &kp X           &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &kp PERIOD
+&mt LEFT_SHIFT Z    &mt LEFT_ALT X  &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &kp PERIOD
 &kp LEFT_SHIFT      &mt LCTRL TAB   &lt 6 DELETE  &lt 2 SPACE  &lt 5 LANGUAGE_2  &lt 3 BACKSPACE  &lt 4 ENTER  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
             >;
         };
