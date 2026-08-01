@@ -1,3 +1,16 @@
+/*
+ * SOA39 keymap
+ *
+ * Base-layer custom keys:
+ *   Q hold = Ctrl     W hold = Win     P hold = Shift
+ *   E double-tap = Esc
+ *   J double-tap = Kana (LANGUAGE_2)
+ *   K double-tap = Eisu (LANGUAGE_1)
+ *
+ * Layer numbers intentionally follow the SOA44 source keymap:
+ *   0 Default, 1 Mouse, 2 Function, 3 Num, 4 Arrow, 5 Scroll, 6 Bluetooth
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -10,11 +23,34 @@
 
 / {
     behaviors {
+        /* Single tap sends the letter; double tap sends the alternate key. */
+        td_e: tap_dance_e {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp E>, <&kp ESCAPE>;
+        };
+
+        td_j: tap_dance_j {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp J>, <&kp LANGUAGE_2>;
+        };
+
+        td_k: tap_dance_k {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp K>, <&kp LANGUAGE_1>;
+        };
+
     };
 
     combos {
         compatible = "zmk,combos";
 
+        /* Retained from the existing SOA39 keymap: positions are SOA39 positions. */
         tab {
             bindings = <&kp TAB>;
             key-positions = <9 10>;
@@ -50,63 +86,51 @@
         };
     };
 
-    behaviors {
-        lt_to_layer_0: lt_to_layer_0 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         default {
             bindings = <
-&kp Q           &kp W          &kp E         &kp R        &kp T         &kp Y            &kp U        &kp I         &kp O               &kp P
-&kp A           &kp S          &kp D         &kp F        &kp G         &kp H            &kp J        &kp K         &kp L               &lt 5 MINUS
-&kp Z           &kp X          &kp C         &kp V        &kp B         &kp SLASH        &kp N        &kp M         &kp COMMA           &kp PERIOD
-&kp LEFT_SHIFT  &mt LCTRL TAB  &lt 6 DELETE  &lt 3 SPACE  &lt 2 TAB  &lt 3 BACKSPACE  &lt 2 ENTER  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
-
+&mt LEFT_CONTROL Q  &mt LEFT_WIN W  &td_e  &kp R  &kp T      &kp Y             &kp U   &kp I   &kp O     &mt LEFT_SHIFT P
+&kp A               &kp S           &kp D   &kp F  &kp G      &kp H             &td_j   &td_k   &kp L     &lt 5 MINUS
+&kp Z               &kp X           &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &kp PERIOD
+&kp LEFT_SHIFT      &mt LCTRL TAB   &lt 6 DELETE  &lt 2 SPACE  &lt 5 LANGUAGE_2  &lt 3 BACKSPACE  &lt 4 ENTER  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
             >;
         };
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans               &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &mkp MB1            &mkp MB3             &mkp MB2  &lt 5 MINUS
-&trans  &trans  &trans  &trans  &trans  &trans  &kp LA(LEFT_ARROW)  &kp LA(RIGHT_ARROW)  &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans              &trans               &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans
             >;
         };
 
         FUNCTION {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT     &kp CARET  &kp AMPERSAND  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp F1           &kp F2       &kp F3    &kp F4      &kp F5          &trans     &kp UP         &trans        &kp SQT               &kp SEMICOLON
-&kp F6           &kp F7       &kp F8    &kp F9      &kp F10         &trans     &kp LEFT       &kp DOWN      &kp RIGHT             &trans
-&kp F11          &kp F12      &trans    &trans      &kp LANGUAGE_2  &trans     &trans         &trans        &trans
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT  &kp CARET       &kp AMPERSAND     &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp F1           &kp F2       &kp F3    &kp F4      &kp F5       &kp BACKSPACE   &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp SQT               &kp DOUBLE_QUOTES
+&kp F6           &kp F7       &kp F8    &kp F9      &kp F10      &kp PLUS        &kp MINUS         &kp ASTRK          &kp SLASH             &trans
+&trans           &kp F11      &kp F12   &trans      &trans       &kp LANGUAGE_1  &kp LANGUAGE_2    &trans             &trans
             >;
         };
 
         NUM {
             bindings = <
-&kp N1            &kp N2             &kp N3          &kp N4           &kp N5         &kp N6          &kp N7  &kp N8      &kp N9     &kp N0
-&trans            &trans             &trans          &kp SLASH        &kp BACKSLASH  &trans          &kp N4  &kp N5      &kp N6     &kp ASTERISK
-&kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp PIPE       &trans          &kp N0  &kp N1      &kp N2     &kp N3
-&trans            &trans             &trans          &trans           &trans         &kp LANGUAGE_1  &trans  &kp PERIOD  &kp SLASH
+&kp N1            &kp N2             &kp N3          &kp N4           &kp N5         &kp N6         &kp N7  &kp N8  &kp N9  &kp N0
+&trans            &trans             &trans          &trans           &trans         &kp BACKSLASH  &kp BACKSPACE  &kp N4  &kp N5  &kp N6
+&kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp PIPE       &kp BACKSLASH  &kp N0  &kp N1  &kp N2  &kp N3
+&trans            &trans             &trans          &trans           &trans         &trans         &trans  &kp PERIOD  &kp SLASH
             >;
         };
 
         ARROW {
             bindings = <
-&trans  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans
+&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5   &kp N6          &kp N7          &kp N8        &kp N9
+&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5   &kp LEFT        &kp DOWN        &kp UP_ARROW  &kp RIGHT
+&trans  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp LANGUAGE_1  &kp LANGUAGE_2  &trans        &trans
+&trans  &trans  &trans  &trans  &trans   &trans   &trans          &trans          &trans
             >;
         };
 
@@ -121,9 +145,9 @@
 
         Bluetooth {
             bindings = <
-&trans        &trans        &trans        &trans       &trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2    &bt BT_SEL 3  &bt BT_SEL 4
-&trans        &trans        &trans        &trans       &trans       &trans        &trans        &trans          &trans        &trans
-&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans       &bootloader  &trans        &trans        &trans          &trans        &bt BT_CLR
+&trans        &trans        &trans        &trans       &trans       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans
+&trans        &trans        &trans        &trans       &trans       &trans        &trans        &trans        &trans        &trans
+&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans       &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
 &trans        &trans        &trans        &trans       &trans       &trans        &trans        &bt BT_CLR_ALL  &trans
             >;
         };
