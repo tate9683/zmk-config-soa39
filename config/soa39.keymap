@@ -4,8 +4,8 @@
  * Base-layer custom keys:
  *   Q hold = Ctrl     W hold = Win     P hold = Shift
  *   E double-tap = Esc
- *   J double-tap = Kana (LANGUAGE_2)
- *   K double-tap = Eisu (LANGUAGE_1)
+ *   J double-tap = Eisu (LANGUAGE_1)
+ *   K double-tap = Kana (LANGUAGE_2)
  *
  * Layer numbers intentionally follow the SOA44 source keymap:
  *   0 Default, 1 Mouse, 2 Function, 3 Num, 4 Arrow, 5 Scroll, 6 Bluetooth
@@ -35,14 +35,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp J>, <&kp LANGUAGE_2>;
+            bindings = <&kp J>, <&kp LANGUAGE_1>;
         };
 
         td_k: tap_dance_k {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp K>, <&kp LANGUAGE_1>;
+            bindings = <&kp K>, <&kp LANGUAGE_2>;
         };
 
     };
@@ -93,8 +93,8 @@
             bindings = <
 &mt LEFT_CONTROL Q  &mt LEFT_WIN W  &td_e  &kp R  &kp T      &kp Y             &kp U   &kp I   &kp O     &mt LEFT_SHIFT P
 &kp A               &kp S           &kp D   &kp F  &kp G      &kp H             &td_j   &td_k   &kp L     &lt 5 MINUS
-&kp Z               &kp X           &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &kp PERIOD
-&kp LEFT_SHIFT      &mt LCTRL TAB   &lt 6 DELETE  &lt 2 SPACE  &lt 5 LANGUAGE_2  &lt 3 BACKSPACE  &lt 4 ENTER  &kp LEFT_ALT  &mt LEFT_WIN EQUAL
+&mt LEFT_SHIFT Z     &mt LEFT_ALT X  &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &kp PERIOD
+&kp LEFT_SHIFT      &mt LCTRL TAB   &lt 6 DELETE  &lt 2 SPACE  &lt 5 LANGUAGE_2  &lt 3 BACKSPACE  &lt 4 ENTER  &kp LEFT_ALT  &lt 6 EQUAL
             >;
         };
 
@@ -119,7 +119,7 @@
         NUM {
             bindings = <
 &kp N1            &kp N2             &kp N3          &kp N4           &kp N5         &kp N6         &kp N7  &kp N8  &kp N9  &kp N0
-&trans            &trans             &trans          &trans           &trans         &kp BACKSLASH  &kp BACKSPACE  &kp N4  &kp N5  &kp N6
+&trans            &trans             &trans          &trans           &kp BACKSLASH  &kp BACKSPACE  &kp N4  &kp N5  &kp N6  &kp MINUS
 &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp PIPE       &kp BACKSLASH  &kp N0  &kp N1  &kp N2  &kp N3
 &trans            &trans             &trans          &trans           &trans         &trans         &trans  &kp PERIOD  &kp SLASH
             >;
@@ -127,9 +127,9 @@
 
         ARROW {
             bindings = <
-&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5   &kp N6          &kp N7          &kp N8        &kp N9
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5   &kp LEFT        &kp DOWN        &kp UP_ARROW  &kp RIGHT
-&trans  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp LANGUAGE_1  &kp LANGUAGE_2  &trans        &trans
+&kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7          &kp N8          &kp N9        &kp N0
+&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp LEFT  &kp DOWN        &kp UP_ARROW  &kp RIGHT  &kp UNDERSCORE
+&kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp LANGUAGE_1  &kp LANGUAGE_2  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans   &trans   &trans          &trans          &trans
             >;
         };
