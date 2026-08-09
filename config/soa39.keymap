@@ -5,8 +5,8 @@
  *   Q hold = Ctrl     W hold = Win     P hold = Shift
  *   E double-tap = Esc
  *   R double-tap = Tab
- *   J double-tap = Eisu (LANGUAGE_1)
- *   K double-tap = Kana (LANGUAGE_2)
+ *   J double-tap = Kana (LANGUAGE_2)
+ *   H double-tap = Eisu (LANGUAGE_1)
  *
  * Layer numbers intentionally follow the SOA44 source keymap:
  *   0 Default, 1 Mouse, 2 Function, 3 Num, 4 Arrow, 5 Scroll, 6 Bluetooth
@@ -43,14 +43,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp J>, <&kp LANGUAGE_1>;
+            bindings = <&kp J>, <&kp LANGUAGE_2>;
         };
 
-        td_k: tap_dance_k {
+        td_h: tap_dance_h {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp K>, <&kp LANGUAGE_2>;
+            bindings = <&kp H>, <&kp LANGUAGE_1>;
         };
 
     };
@@ -100,7 +100,7 @@
         default {
             bindings = <
 &mt LEFT_CONTROL Q  &mt LEFT_WIN W  &td_e  &td_r  &kp T      &kp Y             &kp U   &kp I   &kp O     &mt LEFT_SHIFT P
-&kp A               &kp S           &kp D   &kp F  &kp G      &kp H             &td_j   &td_k   &kp L     &lt 5 MINUS
+&kp A               &kp S           &kp D   &kp F  &kp G      &td_h             &td_j   &kp K   &kp L     &lt 5 MINUS
 &mt LEFT_SHIFT Z     &mt LEFT_ALT X  &kp C   &kp V  &kp B      &kp SLASH         &kp N   &kp M   &kp COMMA &mt RIGHT_SHIFT PERIOD
 &kp LEFT_SHIFT      &mt LCTRL TAB   &lt 6 DELETE  &lt 2 SPACE  &lt 5 LANGUAGE_2  &lt 3 BACKSPACE  &lt 4 ENTER  &kp LEFT_ALT  &lt 6 EQUAL
             >;
