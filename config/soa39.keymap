@@ -5,8 +5,8 @@
  *   Q hold = Ctrl     W hold = Win     P hold = Shift
  *   E double-tap = Esc
  *   R double-tap = Tab
- *   J double-tap = Kana (LANGUAGE_2)
- *   H double-tap = Eisu (LANGUAGE_1)
+ *   J double-tap = Japanese input (LANGUAGE_1)
+ *   H double-tap = English input (LANGUAGE_2)
  *
  * Layer numbers intentionally follow the SOA44 source keymap:
  *   0 Default, 1 Mouse, 2 Function, 3 Num, 4 Arrow, 5 Scroll, 6 Bluetooth
@@ -43,14 +43,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp J>, <&kp LANGUAGE_2>;
+            bindings = <&kp J>, <&kp LANGUAGE_1>;
         };
 
         td_h: tap_dance_h {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp H>, <&kp LANGUAGE_1>;
+            bindings = <&kp H>, <&kp LANGUAGE_2>;
         };
 
     };
