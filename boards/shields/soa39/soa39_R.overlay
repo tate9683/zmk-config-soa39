@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
+#include <input/processors/runtime-input-processor.dtsi>
 
 &default_transform {
     col-offset = <5>;
@@ -18,6 +19,14 @@
 };
 
 / {
+    // DYA Studio can tune pointer speed, rotation, and the 300ms auto mouse layer.
+    mouse_runtime_input_processor {
+        temp-layer-enabled;
+        temp-layer = <1>;
+        temp-layer-activation-delay-ms = <0>;
+        temp-layer-deactivation-delay-ms = <300>;
+    };
+
     xy_clipper: xy_clipper {
         compatible = "zmk,input-processor-xy-clipper";
         #input-processor-cells = <0>;
@@ -30,14 +39,14 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&zip_temp_layer 1 300>;
+        input-processors = <&mouse_runtime_input_processor>;
 
         scroller {
             layers = <5>;
             input-processors =
                 <&xy_clipper>,
                 <&zip_xy_to_scroll_mapper>,
-                <&zip_scroll_scaler 2 5>;
+                <&scroll_runtime_input_processor>;
         };
     };
 };
@@ -97,7 +106,7 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610-alt";
+        compatible = "cormoran,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
@@ -105,6 +114,7 @@
         x-input-code = <0>;  // INPUT_REL_X
         y-input-code = <1>;  // INPUT_REL_Y
         cpi = <500>;
+        settings-id = "trackball";
         swap-xy;
         force-awake;
         wakeup-source;
