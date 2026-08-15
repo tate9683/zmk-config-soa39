@@ -115,7 +115,6 @@
         y-input-code = <1>;  // INPUT_REL_Y
         cpi = <500>;
         settings-id = "trackball";
-        swap-xy;
         force-awake;
         wakeup-source;
     };
