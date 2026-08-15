@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: sekigon-gonnoc
       url-base: https://github.com/sekigon-gonnoc
     - name: gohanda11
@@ -12,9 +14,33 @@ manifest:
       url-base: https://github.com/iwk7273
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: main
-      import: app/west.yml
+      remote: cormoran
+      revision: main+dya
+      import:
+        file: app/west.yml
+    - name: zephyr
+      remote: cormoran
+      revision: v4.1.0+zmk-fixes+nrf-half-duplex-uart
+      clone-depth: 1
+      import:
+        name-blocklist:
+          - ci-tools
+          - hal_altera
+          - hal_cypress
+          - hal_infineon
+          - hal_microchip
+          - hal_nxp
+          - hal_openisa
+          - hal_xtensa
+          - hal_st
+          - hal_ti
+          - loramac-node
+          - mcuboot
+          - mcumgr
+          - net-tools
+          - openthread
+          - edtt
+          - trusted-firmware-m
     - name: zmk-feature-non-lipo-battery-management
       remote: sekigon-gonnoc
       revision: main
@@ -26,6 +52,57 @@ manifest:
       revision: main
     - name: zmk-ws2812-driver
       remote: gohanda11
+      revision: main
+    - name: zmk-feature-custom-settings
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-fast-keymap
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-runtime-macro
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-runtime-combo
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-input-stream
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-module-physical-layout
+      remote: cormoran
+      revision: main
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+    - name: zmk-driver-pmw3610-with-custom-studio-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-module-ble-management
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-default-layer
+      remote: cormoran
+      revision: codex/custom-rpc-rewrite
+    - name: zmk-feature-os-detection
+      remote: cormoran
+      revision: main
+    - name: zmk-module-settings-rpc
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-device-info
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-watchdog
+      remote: cormoran
+      revision: main
+    - name: zmk-module-devtool
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-zephyr-setting-expose
+      remote: cormoran
+      revision: main
+    - name: zmk-feature-kscan-diagnostics
+      remote: cormoran
       revision: main
   self:
     path: config
