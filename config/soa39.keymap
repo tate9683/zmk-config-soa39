@@ -127,10 +127,10 @@
 
         NUM {
             bindings = <
-&kp N1            &kp N2             &kp N3          &kp N4           &kp N5         &kp N6         &kp N7  &kp N8      &kp N9     &kp N0
-&trans            &trans             &trans          &trans           &kp BACKSLASH  &kp BACKSPACE  &kp N4  &kp N5      &kp N6     &kp MINUS
-&kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp PIPE       &kp BACKSLASH  &kp N0  &kp N1      &kp N2     &kp N3
-&trans            &trans             &trans          &trans           &trans         &trans         &trans  &kp PERIOD  &kp SLASH
+&kp N1            &kp N2             &kp N3          &kp N4           &kp N5         &kp N6           &kp N7      &kp N8      &kp N9     &kp N0
+&trans            &trans             &trans          &trans           &kp BACKSLASH  &kp C_VOLUME_UP  &kp N4      &kp N5      &kp N6     &kp MINUS
+&kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp PIPE       &kp C_VOL_DN     &kp N0      &kp N1      &kp N2     &kp N3
+&trans            &trans             &trans          &trans           &trans         &trans           &kp K_MUTE  &kp PERIOD  &kp SLASH
             >;
         };
 
